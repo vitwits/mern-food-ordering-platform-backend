@@ -5,6 +5,7 @@ import { jwtCheck, jwtParse } from "../middleware/auth";
 
 const router = express.Router();
 
+// /api/my/user
 router.post("/", jwtCheck, MyUserController.createCurrentUser);
 router.put(
   "/",
@@ -13,5 +14,6 @@ router.put(
   validateMyUserRequest,
   MyUserController.updateCurrentUser
 );
+router.get("/", jwtCheck, jwtParse, MyUserController.getCurrentUser)
 
 export default router;
